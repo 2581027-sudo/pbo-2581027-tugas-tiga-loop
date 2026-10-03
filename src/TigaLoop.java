@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /*
  * Tugas  : Tiga Loop, Satu Deret
- * Nama   : Friendly Harold Panjaitan
+ * Nama   : <isi nama kamu>
  * NIM    : 2581027
  *
  * ============================================================
@@ -17,6 +17,8 @@ import java.util.Scanner;
  *
  * i <  n berputar : 4 kali
  * i <= n berputar : 5 kali
+ * Disaring : 1 3 5 7
+ * Sampai println  : 4 kali
  *
  * ============================================================
  * HASIL RUN KEDUA (n = 0)
@@ -30,6 +32,8 @@ import java.util.Scanner;
  *
  * i <  n berputar : 0 kali
  * i <= n berputar : 0 kali
+ * Disaring : 1 3 5 7
+ * Sampai println  : 4 kali
  *
  * ============================================================
  * KESIMPULAN
@@ -42,6 +46,18 @@ import java.util.Scanner;
  *
  * Kesimpulan satu kalimat: do-while mengecek kondisinya SESUDAH badan
  * loop dijalankan, jadi badannya pasti jalan minimal sekali.
+ *
+ * ============================================================
+ * PENJELASAN: kenapa loop tidak berhenti di i = 8 padahal 8 > 7 ?
+ * ============================================================
+ * Di dalam badan loop, pengecekan continue (lewati angka genap) ditulis
+ * SEBELUM pengecekan break (i > 7). Saat i = 8, angka itu genap sehingga
+ * continue langsung dijalankan dan loncat ke iterasi berikutnya; baris
+ * "if (i > 7) break;" di bawahnya tidak sempat dieksekusi. Baru ketika
+ * i = 9 (ganjil, lolos dari continue), kondisi i > 7 diperiksa, bernilai
+ * benar, dan break menghentikan loop. Jadi loop berhenti di i = 9, bukan
+ * di i = 8. Karena 9 berhenti sebelum println, angka yang tercetak
+ * tetap hanya 1 3 5 7 (4 kali).
  */
 public class TigaLoop {
     public static void main(String[] args) {
@@ -92,6 +108,23 @@ public class TigaLoop {
         }
         System.out.println("i <  n berputar : " + kurang + " kali");
         System.out.println("i <= n berputar : " + kurangSama + " kali");
+
+        // ---------- Saringan 1-10 dengan continue dan break ----------
+        // Angka tetap 1-10 (tidak ikut n)
+        int jumlahPrintln = 0;
+        System.out.print("Disaring :");
+        for (int i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                continue;   // lewati angka genap
+            }
+            if (i > 7) {
+                break;      // berhenti kalau i > 7
+            }
+            System.out.print(" " + i);
+            jumlahPrintln++;
+        }
+        System.out.println();
+        System.out.println("Sampai println  : " + jumlahPrintln + " kali");
 
         input.close();
     }
